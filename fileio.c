@@ -10,11 +10,12 @@ int readFromBinaryFile(unsigned int *intArray, int length, char * name)
 	if (!ptr_myfile)
 	{
 		printf("Unable to open file :(\n");
-		return 1;
+		return 0;
 	}
 
 	fread(intArray, sizeof(unsigned int), length, ptr_myfile);
 	fclose(ptr_myfile);
+	return 1;
 }
 
 // Pass in a pointer to the intArray to be written, the number of ints in the array, and the name of the file you are saving into.
