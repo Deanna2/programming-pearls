@@ -5,23 +5,16 @@
 #include "bitmap.h"
 #include "fileio.c"
 
-
 int main()
 {
 	int size = 5000000;
 	unsigned int *intArray = (unsigned int *) malloc(sizeof(unsigned int) * size);
-	FILE * ptr_myfile;
-
-	ptr_myfile=fopen("input.bin", "rb");
-	if (!ptr_myfile)
+	
+	if (!readFromBinaryFile(intArray, size, "input.bin"))
 	{
-		printf("Unable to open file :(\n");
 		return 1;
 	}
-
-	fread(intArray, sizeof(unsigned int), size, ptr_myfile);
-	fclose(ptr_myfile);
-
+	
 	// Create the byte array
 	unsigned int byteArrayLength = (10000000 / 8) + 1;
 	char *byteArray = (char *) calloc(byteArrayLength, 1);
