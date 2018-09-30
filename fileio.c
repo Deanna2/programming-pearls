@@ -2,6 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Writes the binary numbers read into the intArray that is passed in.
+int readFromBinaryFile(unsigned int *intArray, int length, char * name)
+{
+	FILE * ptr_myfile;
+	ptr_myfile = fopen("input.bin", "rb");
+	if (!ptr_myfile)
+	{
+		printf("Unable to open file :(\n");
+		return 1;
+	}
+
+	fread(intArray, sizeof(unsigned int), length, ptr_myfile);
+	fclose(ptr_myfile);
+}
+
 // Pass in a pointer to the intArray to be written, the number of ints in the array, and the name of the file you are saving into.
 int writeToBinaryFile(unsigned int *intArray, int length, char * name)
 {
