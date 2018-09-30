@@ -2,9 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-int getByteArrayLength(int maximumValue);
+#include "bitmap.h"
+#include "fileio.c"
 
-char * getBitmapArray(unsigned int intArray, int size, int byteArrayLength);
 
 int main()
 {
@@ -56,36 +56,15 @@ int main()
 		}
 	}
 
-	FILE * bin_ptr;
-	bin_ptr = fopen("output.bin","wb");
-	if (!bin_ptr)
-	{
-		printf("Unable to open output.bin :(\n");
-		return 1;
-	}
-
-	fwrite(orderedArray, sizeof(unsigned int), size, bin_ptr);
-	fclose(bin_ptr);
-
-	FILE * txt_ptr;
-	txt_ptr = fopen("output.txt", "w");
-	if (!txt_ptr)
-	{
-		printf("Unable to open output.txt :(\n");
+	if (!writeToBinaryFile(orderedArray, size, "output.bin")){
 		return 1;
 	}
 	
-	char * totalString = (char *) malloc(11 * size);
-	for (int i = 0; i < size; ++i)
-	{
-		sprintf(&totalString[i * 11], "%10d\n", orderedArray[i]);
+	if (!writeToTextFile(orderedArray, size, "output.txt")){
+		return 1;
 	}
-	
-	fwrite(totalString, 11, size, txt_ptr);
-	fclose(txt_ptr);
 
 	free(orderedArray);
-	free(totalString);
 	
 	return 0;
 }
