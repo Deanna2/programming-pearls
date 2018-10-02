@@ -6,10 +6,11 @@
 int readFromBinaryFile(unsigned int *intArray, int length, char * name)
 {
 	FILE * ptr_myfile;
-	ptr_myfile = fopen("input.bin", "rb");
+	ptr_myfile = fopen(name, "rb");	
+	printf("Attempting to read from binary file %s\n", name);
 	if (!ptr_myfile)
 	{
-		printf("Unable to open file :(\n");
+		printf("Unable to open %s\n", name);
 		return 0;
 	}
 
@@ -26,7 +27,7 @@ int writeToBinaryFile(unsigned int *intArray, int length, char * name)
 	bin_ptr = fopen(name, "wb");
 	if (!bin_ptr)
 	{
-		printf("Unable to open binary file :(\n");
+		printf("Unable to open %s\n", name);
 		return 0;
 	}
 
@@ -42,7 +43,7 @@ int writeToTextFile(unsigned int *intArray, int length, char * name)
 	txt_ptr = fopen(name, "w");
 	if (!txt_ptr)
 	{
-		printf("Unable to open text file :(\n");
+		printf("Unable to open %s\n", name);
 		return 0;
 	}
 

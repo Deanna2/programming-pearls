@@ -42,7 +42,7 @@ int main()
 	{
 		return 1;
 	}
-
+	printf("Successfully wrote to binary file and text file");
 	free(halfArray);
 
 	return 0;
